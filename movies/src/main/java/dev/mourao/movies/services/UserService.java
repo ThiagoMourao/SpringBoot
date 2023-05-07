@@ -35,7 +35,7 @@ public class UserService {
         return userRepository.insert(new User(name, email, password, roles));
     }
 
-    public User update(ObjectId id, String name, String email, String password, String roles)  {
+    public User update(ObjectId id, String name, String email, String password, String roles) {
         var user = new User(id, name, email, password, roles);
         mongoTemplate.save(user);
         return user;
