@@ -18,6 +18,7 @@ public class ReviewService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
     public Review create(String reviewBody, String imdbId) {
         var review = reviewRepository.insert(new Review(reviewBody, LocalDateTime.now(), LocalDateTime.now()));
 
