@@ -36,8 +36,9 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    public ResponseEntity<User> create(@RequestBody Map<String, String> user) {
-        return new ResponseEntity<>(userService.create(user.get("name"), user.get("email"), user.get("password"), user.get("role")), HttpStatus.CREATED);
+    public ResponseEntity<User> create(@RequestBody Map<String, String> mapUser) {
+        var user = new User(mapUser.get("name"), mapUser.get("email"), mapUser.get("password"), mapUser.get("role"));
+        return new ResponseEntity<>(userService.create(user), HttpStatus.CREATED);
     }
 
     @PutMapping("/update-user/{id}")

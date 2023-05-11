@@ -2,6 +2,7 @@ package dev.mourao.movies.services;
 
 import dev.mourao.movies.domain.Movie;
 import dev.mourao.movies.domain.MovieRepository;
+import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class MovieService {
     @Autowired

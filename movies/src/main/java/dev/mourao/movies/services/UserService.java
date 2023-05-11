@@ -2,6 +2,7 @@ package dev.mourao.movies.services;
 
 import dev.mourao.movies.domain.User;
 import dev.mourao.movies.domain.UserRepository;
+import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
     @Autowired
@@ -31,8 +33,8 @@ public class UserService {
         return userRepository.findByName(name);
     }
 
-    public User create(String name, String email, String password, String roles) {
-        return userRepository.insert(new User(name, email, password, roles));
+    public User create(User user) {
+        return userRepository.insert(user);
     }
 
     public User update(ObjectId id, String name, String email, String password, String roles) {
@@ -49,5 +51,9 @@ public class UserService {
             return users;
         }
         return new User("none", "none", "none", "none");
+    }
+
+    public Boolean getThrow() {
+        throw new IllegalStateException("Bad operation executed");
     }
 }
