@@ -3,6 +3,8 @@ package dev.mourao.movies.services;
 import dev.mourao.movies.domain.User;
 import dev.mourao.movies.domain.UserRepository;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -20,6 +22,7 @@ public class UserService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    private final Logger log = LogManager.getLogger(this);
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -34,6 +37,7 @@ public class UserService {
     }
 
     public User create(User user) {
+        log.warn("UserService.create");
         return userRepository.insert(user);
     }
 

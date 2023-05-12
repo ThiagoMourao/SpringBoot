@@ -1,16 +1,20 @@
 package dev.mourao.movies.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import lombok.*;
 import org.bson.types.ObjectId;
+import org.hibernate.annotations.Table;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Getter
+@Setter
+@EqualsAndHashCode
 public class User {
 
     @Id
