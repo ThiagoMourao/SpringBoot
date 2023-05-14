@@ -1,8 +1,14 @@
 package dev.mourao.movies.tools;
 
+import org.apache.log4j.Logger;
+
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Utils {
+
+    private static final Logger log = Logger.getLogger(Utils.class);
 
     public static Boolean detectPlagium(String original, String possibleCopy) {
         var string1 = original;
@@ -30,5 +36,24 @@ public class Utils {
 
     public static Optional<Integer> bitwiseComparator(int number1, int number2) {
         return Optional.of(number1 & number2);
+    }
+
+    public static String getText(String v1) {
+        try {
+            Optional<String> test = Optional.ofNullable(v1);
+            return test.orElseGet(() -> "");
+        } catch (ArithmeticException ex) {
+            log.error("Unable to get value");
+            return "";
+        }
+    }
+
+    public static String getText2(String v1) {
+        try {
+            return Objects.requireNonNullElse(v1, "");
+        } catch (ArithmeticException ex) {
+            log.error("Unable to get value");
+            return "";
+        }
     }
 }
