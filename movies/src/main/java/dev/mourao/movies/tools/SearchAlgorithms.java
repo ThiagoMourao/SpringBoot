@@ -33,7 +33,7 @@ public class SearchAlgorithms {
     }
 
     //O(log n) -> n = input.length
-    public boolean runBinarySearchRecursively(int[] sortedInput, int target, int minIndex, int maxIndex) {
+    public boolean recursiveBinarySearch(int[] sortedInput, int target, int minIndex, int maxIndex) {
         int middle = minIndex + ((maxIndex - minIndex) / 2);
 
         if (maxIndex < minIndex) {
@@ -44,15 +44,15 @@ public class SearchAlgorithms {
             return true;
         }
         if (target < sortedInput[middle]) {
-            return runBinarySearchRecursively(sortedInput, target, minIndex, middle - 1);
+            return recursiveBinarySearch(sortedInput, target, minIndex, middle - 1);
         }
-        return runBinarySearchRecursively(sortedInput, target, middle + 1, maxIndex);
+        return recursiveBinarySearch(sortedInput, target, middle + 1, maxIndex);
     }
 
     //O(1) + O(1) + log(n) -> n = sortedInput.length
     public boolean fibonacciSearch(int[] sortedInput, int target) {
-        int lenght = sortedInput.length;
-        if (lenght == 0) {
+        int maxIndex = sortedInput.length - 1;
+        if (maxIndex == 0) {
             return false;
         }
 
@@ -61,8 +61,8 @@ public class SearchAlgorithms {
         int fib2 = 1;
         int fib3 = fib1 + fib2;
 
-        // Find the smallest Fibonacci number greater than or equal to lenght
-        while (fib3 < lenght) {
+        // Find the smallest Fibonacci number greater than or equal to maxIndex
+        while (fib3 < maxIndex) {
             fib1 = fib2;
             fib2 = fib3;
             fib3 = fib1 + fib2;
@@ -71,7 +71,7 @@ public class SearchAlgorithms {
         // Initialize variables for the current and previous split points
         int offset = -1;
         while (fib3 > 1) {
-            int i = Math.min(offset + fib2, lenght - 1);
+            int i = Math.min(offset + fib2, maxIndex - 1);
 
             // If target is greater than the value at index i, move the split point to the right
             if (sortedInput[i] < target) {
